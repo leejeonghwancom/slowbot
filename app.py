@@ -20,7 +20,7 @@ client = OpenAI(api_key=API_KEY)
 # 2. 구글 드라이브에서 데이터 파일 다운로드
 # ==========================================
 INDEX_FILE_ID = "10O9D9kIHHbRPMJN_52mPCSjYklgBZpMJ"  # 드라이브에서 추출한 파일 ID
-CSV_FILE_ID = "1HpNAK0vO11XiifJexX7t3Ly902WSGKEJ"      # 드라이브에서 추출한 파일 ID
+CSV_FILE_ID = "1HpNAK0vO11XiifJexX7t3Ly902WSGKEJ"    # 드라이브에서 추출한 파일 ID
 
 index_file = "slowletter_entities.index"
 csv_file = "slowletter_full_with_entities.csv"
@@ -66,8 +66,7 @@ def search_answer(query, top_k=5):
     )
 
     # GPT 답변 생성
-
-prompt = f"""
+    prompt = f"""
 당신은 '슬로우레터(Slowletter)' 스타일의 뉴스 분석 어시스턴트입니다.
 
 역할:
@@ -98,11 +97,12 @@ prompt = f"""
 {context}
 """
 
-ans = client.chat.completions.create(
+    ans = client.chat.completions.create(
         model="gpt-4o",
-        messages=[{"role":"user","content":prompt}]
+        messages=[{"role": "user", "content": prompt}]
     ).choices[0].message.content
-return ans
+
+    return ans
 
 # ==========================================
 # 5. Streamlit UI
