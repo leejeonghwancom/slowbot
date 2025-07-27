@@ -17,7 +17,7 @@ BASE_DIR = "/content/drive/MyDrive/slowproject" # 예시 경로
 # FAISS 최신 버전이 저장되는 고정 디렉토리 경로 (백엔드 시스템에서 생성)
 FAISS_LATEST_DIR = os.path.join(BASE_DIR, "faiss_vectordb_latest")
 # 최신 CSV 파일 경로 (백엔드 시스템에서 생성되는 덮어쓰기 파일)
-CSV_LATEST_FILE = os.path.join(BASE_DIR, "slowletter_with_entities_final.csv")
+CSV_LATEST_FILE = os.path.join(BASE_DIR, "/slowrecent/slowletter_with_entities_final.csv")
 
 # ==========================================
 # 1. 환경 변수 (OpenAI API KEY)
