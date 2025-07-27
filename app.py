@@ -3,17 +3,16 @@ import os
 import faiss
 import pickle
 import pandas as pd
-from sentence_transformers import SentenceTransformer # 쿼리 임베딩용 모델 로드에 필요
+from sentence_transformers import SentenceTransformer
 from openai import OpenAI
-# import gdown # 더 이상 필요하지 않으므로 제거
+# import gdown # Google Drive에서 다운로드하는 로직은 더 이상 필요하지 않으므로 주석 처리 또는 제거
 
 # ==========================================
 # 0. 설정 (환경에 맞게 수정 필요)
 # ==========================================
 # 이 경로는 FAISS 벡터 파일과 CSV 파일이 저장된 드라이브의 'slowproject' 폴더 경로와 일치해야 합니다.
 # Colab 환경이 아닌 실제 서버 배포 시에는 이 경로를 서버 파일 시스템에 맞게 조정해야 합니다.
-# 예시: BASE_DIR = "/home/ubuntu/slowproject"
-BASE_DIR = "/content/drive/MyDrive/slowproject" 
+BASE_DIR = "/content/drive/MyDrive/slowproject" # 예시 경로
 
 # FAISS 최신 버전이 저장되는 고정 디렉토리 경로 (백엔드 시스템에서 생성)
 FAISS_LATEST_DIR = os.path.join(BASE_DIR, "faiss_vectordb_latest")
@@ -26,7 +25,7 @@ CSV_LATEST_FILE = os.path.join(BASE_DIR, "slowletter_with_entities_final.csv")
 API_KEY = os.environ.get("OPENAI_API_KEY")
 if not API_KEY:
     st.error("OpenAI API Key가 없습니다. Streamlit secrets 또는 환경 변수로 OPENAI_API_KEY를 설정하세요.")
-    st.stop()
+    st.stop() # API 키가 없으면 앱 실행 중단
 
 client = OpenAI(api_key=API_KEY)
 
@@ -88,7 +87,6 @@ def load_resources():
     return faiss_index, faiss_documents, faiss_metadatas, df_full, embedding_model
 
 # 전역적으로 리소스 로드 (Streamlit 캐시에 의해 한 번만 실행됨)
-# load_resources() 함수에서 반환되는 모든 값을 언패킹하여 변수에 할당합니다.
 faiss_index, faiss_documents, faiss_metadatas, df_full, embedding_model = load_resources()
 
 
