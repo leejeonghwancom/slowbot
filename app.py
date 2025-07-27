@@ -45,7 +45,7 @@ index, df = load_resources()
 # ==========================================
 # 4. 검색 + GPT 2단계 처리
 # ==========================================
-def two_pass_rag(query, top_k=20):
+def two_pass_rag(query, top_k=30):
     # Step 1: 질문 벡터화
     emb = client.embeddings.create(
         model="text-embedding-3-small",
@@ -105,7 +105,7 @@ def two_pass_rag(query, top_k=20):
 # ==========================================
 # 5. Streamlit UI
 # ==========================================
-st.title("Slow News Insight Bot. (2단계 RAG)")
+st.title("Slow News Insight Bot. ")
 
 query = st.text_area("질문을 입력하세요.")
 
